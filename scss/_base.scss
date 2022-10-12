@@ -1,0 +1,26 @@
+:root {
+  --primary: #31c3bd;
+  --primary-light: #65e9e4;
+  --secondary: #f2b137;
+  --secondary-light: #ffc860;
+  --gunmetal-dark: #1a2a33;
+  --gunmetal-light: #1f3641;
+  --pastel-blue: #a8bfc9;
+  --white: #dbe8ed;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
