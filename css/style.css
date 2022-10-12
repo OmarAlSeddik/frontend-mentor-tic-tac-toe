@@ -27,10 +27,129 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 1.5rem;
   background-color: var(--navy);
+  color: var(--silver);
 }
 
-.x-o-icon {
+.heading {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.heading--lg {
+  font-size: 2.5rem;
+  line-height: 3.125rem;
+  letter-spacing: 0.15625rem;
+}
+.heading--md {
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  letter-spacing: 0.09375rem;
+}
+.heading--sm {
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+  letter-spacing: 0.078125rem;
+}
+.heading--xs {
+  line-height: 1.25rem;
+  letter-spacing: 0.0625rem;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.0546875rem;
+}
+
+.transparent {
+  opacity: 0.5;
+}
+
+.button--primary {
+  cursor: pointer;
+  border-radius: 0.9375rem;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+  letter-spacing: 0.078125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.button--primary--yellow {
+  background-color: var(--yellow);
+  box-shadow: inset 0px -0.5rem 0px var(--yellow-dark);
+}
+.button--primary--yellow:hover {
+  background-color: var(--yellow-light);
+}
+.button--primary--blue {
+  background-color: var(--blue);
+  box-shadow: inset 0px -0.5rem 0px var(--blue-dark);
+}
+.button--primary--blue:hover {
+  background-color: var(--blue-light);
+}
+.button--secondary {
+  cursor: pointer;
+}
+.button--secondary--yellow {
+  background-color: var(--yellow);
+  box-shadow: inset 0px -0.25rem 0px var(--yellow-dark);
+  border-radius: 0.625rem;
+}
+.button--secondary--yellow:hover {
+  background-color: var(--yellow-light);
+}
+.button--secondary--silver {
+  background-color: var(--silver);
+  box-shadow: inset 0px -0.25rem 0px var(--silver-dark);
+  border-radius: 0.625rem;
+}
+.button--secondary--silver:hover {
+  background-color: var(--silver-light);
+}
+
+.new-game-menu {
+  display: flex;
+  flex-direction: column;
+  width: 28.75rem;
+}
+
+.icon-container {
+  margin: 0 auto;
+  display: flex;
+}
+
+.toggle-container {
+  padding: 1.5rem 1.5rem 1.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mb--20 {
+  margin-bottom: 1.25rem;
+}
+.mb--40 {
+  margin-bottom: 2.5rem;
+}
+
+.icon {
   width: 2rem;
   height: 2rem;
+}
+.icon--sm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.icon--lg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.card {
+  background-color: var(--navy-light);
+  box-shadow: inset 0px -0.5rem 0px var(--navy-dark);
+  border-radius: 0.9375rem;
 }/*# sourceMappingURL=style.css.map */

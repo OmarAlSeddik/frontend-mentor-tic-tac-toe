@@ -1,0 +1,17 @@
+.new-game-menu {
+  display: flex;
+  flex-direction: column;
+  width: 28.75rem;
+}
+
+.icon-container {
+  margin: 0 auto;
+  display: flex;
+}
+
+.toggle-container {
+  padding: 1.5rem 1.5rem 1.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

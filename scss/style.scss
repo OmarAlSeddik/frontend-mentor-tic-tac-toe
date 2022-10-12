@@ -1,6 +1,26 @@
 @forward "base";
+@forward "typography";
+@forward "buttons";
+@forward "new-game-menu";
+@forward "margins";
 
-.x-o-icon {
+.icon {
   width: 2rem;
   height: 2rem;
+
+  &--sm {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &--lg {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.card {
+  background-color: var(--navy-light);
+  box-shadow: inset 0px -0.5rem 0px var(--navy-dark);
+  border-radius: 0.9375rem;
 }
