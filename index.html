@@ -22,18 +22,29 @@
     <!-- New Game Menu -->
     <div class="new-game-menu">
       <div class="icon-container mb--40">
-        <img src="assets/icon-x.svg" alt="" class="icon--sm" />
-        <img src="assets/icon-o.svg" alt="" class="icon--sm" />
+        <img src="assets/icon-x.svg" alt="" class="icon" />
+        <img src="assets/icon-o.svg" alt="" class="icon" />
       </div>
       <div class="toggle-container card mb--40">
-        <h1 class="heading--sm">PICK PLAYER 1'S MARK</h1>
-        <div class="button--toggle"></div>
+        <h1 class="heading--sm mb--24">PICK PLAYER 1'S MARK</h1>
+        <div class="toggle mb--16">
+          <button class="toggle__button active">
+            <img
+              src="assets/icon-x.svg"
+              alt=""
+              class="icon toggle__icon active"
+            />
+          </button>
+          <button class="toggle__button">
+            <img src="assets/icon-o.svg" alt="" class="icon toggle__icon" />
+          </button>
+        </div>
         <p class="text transparent">REMEMBER: X GOES FIRST</p>
       </div>
-      <button class="button--primary button--primary--yellow mb--20">
+      <button class="button button--primary button--primary--yellow mb--20">
         NEW GAME (VS CPU)
       </button>
-      <button class="button--primary button--primary--blue">
+      <button class="button button--primary button--primary--blue">
         NEW GAME (VS PLAYER)
       </button>
     </div>

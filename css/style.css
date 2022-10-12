@@ -10,6 +10,7 @@
   --navy-light: #1f3641;
   --silver-dark: #6b8997;
   --silver: #a8bfc9;
+  --silver-transparent: #a8bfc90d;
   --silver-light: #dbe8ed;
 }
 
@@ -67,14 +68,19 @@ body {
   opacity: 0.5;
 }
 
-.button--primary {
+.button {
   cursor: pointer;
+  color: var(--navy-dark);
+  transition: background-color 0.25s, padding 0.1s, box-shadow 0.1s, margin 0.1s;
+}
+.button--primary {
   border-radius: 0.9375rem;
   font-size: 1.25rem;
   line-height: 1.5625rem;
   letter-spacing: 0.078125rem;
   font-weight: 700;
   text-transform: uppercase;
+  padding: 1rem 0 1.375rem;
 }
 .button--primary--yellow {
   background-color: var(--yellow);
@@ -90,8 +96,13 @@ body {
 .button--primary--blue:hover {
   background-color: var(--blue-light);
 }
+.button--primary:active {
+  box-shadow: none;
+  padding-bottom: 1rem;
+  margin-top: 0.375rem;
+}
 .button--secondary {
-  cursor: pointer;
+  padding: 0 0 0.375rem;
 }
 .button--secondary--yellow {
   background-color: var(--yellow);
@@ -109,16 +120,53 @@ body {
 .button--secondary--silver:hover {
   background-color: var(--silver-light);
 }
+.button--secondary:active {
+  box-shadow: none;
+  padding-bottom: 0rem;
+  margin-top: 0.375rem;
+}
+
+.toggle {
+  background-color: var(--navy);
+  display: flex;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.625rem;
+}
+.toggle__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--navy);
+  width: 50%;
+  border-radius: 0.625rem;
+  padding: 0.6875rem 0;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+.toggle__button.active {
+  background-color: var(--silver);
+}
+.toggle__button:not(.active):hover {
+  background-color: var(--silver-transparent);
+}
+.toggle__icon.active {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
+}
+.toggle__icon:not(.active) {
+  filter: brightness(0) saturate(100%) invert(81%) sepia(37%) saturate(127%) hue-rotate(153deg) brightness(86%) contrast(91%);
+}
 
 .new-game-menu {
   display: flex;
   flex-direction: column;
-  width: 28.75rem;
+  min-width: min(28.75rem, 100%);
 }
 
 .icon-container {
   margin: 0 auto;
   display: flex;
+  gap: 0.5rem;
 }
 
 .toggle-container {
@@ -128,8 +176,14 @@ body {
   align-items: center;
 }
 
+.mb--16 {
+  margin-bottom: 1rem;
+}
 .mb--20 {
   margin-bottom: 1.25rem;
+}
+.mb--24 {
+  margin-bottom: 1.5rem;
 }
 .mb--40 {
   margin-bottom: 2.5rem;

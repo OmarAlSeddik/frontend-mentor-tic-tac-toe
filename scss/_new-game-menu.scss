@@ -1,12 +1,13 @@
 .new-game-menu {
   display: flex;
   flex-direction: column;
-  width: 28.75rem;
+  min-width: min(28.75rem, 100%);
 }
 
 .icon-container {
   margin: 0 auto;
   display: flex;
+  gap: 0.5rem;
 }
 
 .toggle-container {
