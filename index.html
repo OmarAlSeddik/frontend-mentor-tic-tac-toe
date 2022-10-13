@@ -20,7 +20,7 @@
   </head>
   <body>
     <!-- New Game Page -->
-    <div class="page">
+    <div class="page hidden">
       <div class="icon-container mb--40 center">
         <img src="assets/icon-x.svg" alt="" class="icon" />
         <img src="assets/icon-o.svg" alt="" class="icon" />
@@ -63,8 +63,43 @@
           <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
         </button>
       </header>
-      <main class="board"></main>
-      <footer class="footer"></footer>
+      <main class="board">
+        <div class="slot card"></div>
+        <div class="slot card">
+          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card">
+          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card">
+          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card">
+          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card">
+          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card"></div>
+        <div class="slot card">
+          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="slot card">
+          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+        </div>
+        <div class="score score--blue">
+          <div class="text">X (YOU)</div>
+          <div class="heading heading--md">14</div>
+        </div>
+        <div class="score score--silver">
+          <div class="text">TIES</div>
+          <div class="heading heading--md">32</div>
+        </div>
+        <div class="score score--yellow">
+          <div class="text">O (CPU)</div>
+          <div class="heading heading--md">11</div>
+        </div>
+      </main>
     </div>
   </body>
 </html>
