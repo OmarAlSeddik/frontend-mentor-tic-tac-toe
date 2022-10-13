@@ -19,9 +19,9 @@
     <title>Frontend Mentor | Tic Tac Toe</title>
   </head>
   <body>
-    <!-- New Game Menu -->
-    <div class="new-game-menu">
-      <div class="icon-container mb--40">
+    <!-- New Game Page -->
+    <div class="page">
+      <div class="icon-container mb--40 center">
         <img src="assets/icon-x.svg" alt="" class="icon" />
         <img src="assets/icon-o.svg" alt="" class="icon" />
       </div>
@@ -47,6 +47,24 @@
       <button class="button button--primary button--primary--blue">
         NEW GAME (VS PLAYER)
       </button>
+    </div>
+    <!-- Game Board Page -->
+    <div class="page">
+      <header class="header mb--20">
+        <div class="icon-container">
+          <img src="assets/icon-x.svg" alt="" class="icon" />
+          <img src="assets/icon-o.svg" alt="" class="icon" />
+        </div>
+        <div class="turn-indicator card card--sm">
+          <img src="assets/icon-x.svg" alt="" class="icon--sm icon--silver" />
+          <p class="heading--xs">TURN</p>
+        </div>
+        <button class="button button--secondary button--secondary--silver">
+          <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
+        </button>
+      </header>
+      <main class="board"></main>
+      <footer class="footer"></footer>
     </div>
   </body>
 </html>
