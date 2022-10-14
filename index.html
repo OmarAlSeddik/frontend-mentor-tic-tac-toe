@@ -20,90 +20,84 @@
   </head>
   <body>
     <!-- New Game Page -->
-    <div class="page hidden">
-      <div class="icon-container mb--40 center">
-        <img src="assets/icon-x.svg" alt="" class="icon" />
-        <img src="assets/icon-o.svg" alt="" class="icon" />
+    <div class="flex column container">
+      <div class="flex align-self--center gap--8 mb--40">
+        <img src="assets/icon-x.svg" alt="" class="icon--md" />
+        <img src="assets/icon-o.svg" alt="" class="icon--md" />
       </div>
-      <div class="toggle-container card mb--40">
+      <div class="card--md flex--center column mb--40">
         <h1 class="heading--sm mb--24">PICK PLAYER 1'S MARK</h1>
         <div class="toggle mb--16">
           <button class="toggle__button active">
-            <img
-              src="assets/icon-x.svg"
-              alt=""
-              class="icon toggle__icon active"
-            />
+            <img src="assets/icon-x.svg" alt="" class="icon--md icon--navy" />
           </button>
           <button class="toggle__button">
-            <img src="assets/icon-o.svg" alt="" class="icon toggle__icon" />
+            <img src="assets/icon-o.svg" alt="" class="icon--md icon--silver" />
           </button>
         </div>
         <p class="text transparent">REMEMBER: X GOES FIRST</p>
       </div>
       <button class="button button--primary button--primary--yellow mb--20">
-        NEW GAME (VS CPU)
+        <p class="heading--sm">NEW GAME (VS CPU)</p>
       </button>
       <button class="button button--primary button--primary--blue">
-        NEW GAME (VS PLAYER)
+        <p class="heading--sm">NEW GAME (VS PLAYER)</p>
       </button>
     </div>
     <!-- Game Board Page -->
-    <div class="page">
-      <header class="header mb--20">
-        <div class="icon-container">
-          <img src="assets/icon-x.svg" alt="" class="icon" />
-          <img src="assets/icon-o.svg" alt="" class="icon" />
-        </div>
-        <div class="turn-indicator card card--sm">
-          <img src="assets/icon-x.svg" alt="" class="icon--sm icon--silver" />
-          <p class="heading--xs">TURN</p>
-        </div>
-        <button class="button button--secondary button--secondary--silver">
-          <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
-        </button>
-      </header>
-      <main class="board">
-        <div class="slot card"></div>
-        <div class="slot card">
-          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card">
-          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card">
-          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card">
-          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card">
-          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card"></div>
-        <div class="slot card">
-          <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="slot card">
-          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-        </div>
-        <div class="score score--blue">
-          <div class="text">X (YOU)</div>
-          <div class="heading heading--md">14</div>
-        </div>
-        <div class="score score--silver">
-          <div class="text">TIES</div>
-          <div class="heading heading--md">32</div>
-        </div>
-        <div class="score score--yellow">
-          <div class="text">O (CPU)</div>
-          <div class="heading heading--md">11</div>
-        </div>
-      </main>
-    </div>
+    <main class="grid">
+      <div class="flex align-self--center gap--8">
+        <img src="assets/icon-x.svg" alt="" class="icon--md" />
+        <img src="assets/icon-o.svg" alt="" class="icon--md" />
+      </div>
+      <div class="card--sm flex gap--12">
+        <img src="assets/icon-x.svg" alt="" class="icon--sm icon--silver" />
+        <p class="heading--xs">TURN</p>
+      </div>
+      <button
+        class="justify-self--right button button--secondary button--secondary--silver"
+      >
+        <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
+      </button>
+      <div class="flex--center card--lg"></div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg"></div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="flex--center card--lg">
+        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
+      </div>
+      <div class="score bg--blue flex--center column">
+        <div class="text">X (YOU)</div>
+        <div class="heading heading--md">14</div>
+      </div>
+      <div class="score bg--silver flex--center column">
+        <div class="text">TIES</div>
+        <div class="heading heading--md">32</div>
+      </div>
+      <div class="score bg--yellow flex--center column">
+        <div class="text">O (CPU)</div>
+        <div class="heading heading--md">11</div>
+      </div>
+    </main>
     <!-- Game Result -->
     <dialog open>
-      <div class="game-result">
+      <div class="game-result flex--center column">
         <p class="heading--xs mb--16 color--silver">YOU WON!</p>
         <div class="flex gap--24 mb--24">
           <img src="assets/icon-x.svg" alt="" class="icon--lg" />
@@ -111,10 +105,10 @@
         </div>
         <div class="button-container flex gap--16">
           <button class="button button--secondary button--secondary--silver">
-            QUIT
+            <p class="heading--xs">QUIT</p>
           </button>
           <button class="button button--secondary button--secondary--yellow">
-            NEXT ROUND
+            <p class="heading--xs">NEXT ROUND</p>
           </button>
         </div>
       </div>

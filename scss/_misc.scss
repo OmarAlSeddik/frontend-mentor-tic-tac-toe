@@ -1,0 +1,31 @@
+.hidden {
+  display: none !important;
+}
+
+.transparent {
+  opacity: 0.5;
+}
+
+.bg {
+  &--blue {
+    background-color: var(--blue);
+  }
+  &--silver {
+    background-color: var(--silver);
+  }
+  &--yellow {
+    background-color: var(--yellow);
+  }
+}
+
+.score {
+  color: var(--navy);
+  border-radius: 0.9375rem;
+  padding: 0.75rem;
+}
+
+.game-result {
+  width: 100vw;
+  padding: 2.8125rem;
+  background-color: var(--navy-light);
+}

@@ -1,13 +1,8 @@
 .button {
   cursor: pointer;
   color: var(--navy-dark);
-  transition: background-color 0.25s, padding 0.1s, box-shadow 0.1s, margin 0.1s;
   &--primary {
     border-radius: 0.9375rem;
-    font-size: 1.25rem;
-    line-height: 1.5625rem;
-    letter-spacing: 0.078125rem;
-    font-weight: 700;
     padding: 1rem 0 1.5rem;
     &--yellow {
       background-color: var(--yellow);
@@ -31,9 +26,6 @@
   }
   &--secondary {
     padding: 1rem;
-    font-weight: 700;
-    line-height: 1.25rem;
-    letter-spacing: 0.0625rem;
     &--yellow {
       background-color: var(--yellow);
       box-shadow: inset 0px -0.25rem 0px var(--yellow-dark);
@@ -65,10 +57,6 @@
   width: 100%;
   border-radius: 0.625rem;
   &__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--navy);
     width: 50%;
     border-radius: 0.625rem;
     padding: 0.6875rem 0;
@@ -78,19 +66,10 @@
       background-color: var(--silver);
     }
     &:not(.active) {
+      background-color: var(--navy);
       &:hover {
         background-color: var(--silver-transparent);
       }
-    }
-  }
-  &__icon {
-    &.active {
-      filter: brightness(0) saturate(100%) invert(12%) sepia(16%)
-        saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
-    }
-    &:not(.active) {
-      filter: brightness(0) saturate(100%) invert(81%) sepia(37%) saturate(127%)
-        hue-rotate(153deg) brightness(86%) contrast(91%);
     }
   }
 }

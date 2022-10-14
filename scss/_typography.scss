@@ -30,3 +30,15 @@
   line-height: 1.125rem;
   letter-spacing: 0.0546875rem;
 }
+
+.color {
+  &--blue {
+    color: var(--blue);
+  }
+  &--yellow {
+    color: var(--yellow);
+  }
+  &--silver {
+    color: var(--silver);
+  }
+}

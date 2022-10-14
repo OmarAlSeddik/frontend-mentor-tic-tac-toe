@@ -1,0 +1,22 @@
+.icon {
+  &--sm {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  &--md {
+    width: 2rem;
+    height: 2rem;
+  }
+  &--lg {
+    width: 4rem;
+    height: 4rem;
+  }
+  &--silver {
+    filter: brightness(0) saturate(100%) invert(81%) sepia(37%) saturate(127%)
+      hue-rotate(153deg) brightness(86%) contrast(91%);
+  }
+  &--navy {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(1249%)
+      hue-rotate(157deg) brightness(97%) contrast(92%);
+  }
+}
