@@ -3,7 +3,9 @@
     background-color: var(--navy-light);
     box-shadow: inset 0px -0.5rem 0px var(--navy-dark);
     border-radius: 0.9375rem;
-    padding: 2.375rem;
+    width: 8.75rem;
+    height: 8.75rem;
+    cursor: pointer;
   }
   &--md {
     background-color: var(--navy-light);
