@@ -20,6 +20,7 @@
   padding: 0;
   border: none;
   font-family: "Outfit", sans-serif;
+  text-transform: uppercase;
 }
 
 body {
@@ -33,26 +34,26 @@ body {
   color: var(--silver);
 }
 
-.heading {
-  font-weight: 700;
-  text-transform: uppercase;
-}
 .heading--lg {
+  font-weight: 700;
   font-size: 2.5rem;
   line-height: 3.125rem;
   letter-spacing: 0.15625rem;
 }
 .heading--md {
+  font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.875rem;
   letter-spacing: 0.09375rem;
 }
 .heading--sm {
+  font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.5625rem;
   letter-spacing: 0.078125rem;
 }
 .heading--xs {
+  font-weight: 700;
   line-height: 1.25rem;
   letter-spacing: 0.0625rem;
 }
@@ -62,10 +63,6 @@ body {
   font-size: 0.875rem;
   line-height: 1.125rem;
   letter-spacing: 0.0546875rem;
-}
-
-.transparent {
-  opacity: 0.5;
 }
 
 .button {
@@ -79,7 +76,6 @@ body {
   line-height: 1.5625rem;
   letter-spacing: 0.078125rem;
   font-weight: 700;
-  text-transform: uppercase;
   padding: 1rem 0 1.5rem;
 }
 .button--primary--yellow {
@@ -103,6 +99,9 @@ body {
 }
 .button--secondary {
   padding: 1rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  letter-spacing: 0.0625rem;
 }
 .button--secondary--yellow {
   background-color: var(--yellow);
@@ -262,6 +261,51 @@ body {
 }
 .score--yellow {
   background-color: var(--yellow);
+}
+
+.game-result {
+  width: 100vw;
+  padding: 2.8125rem 0;
+  background-color: var(--navy-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap--16 {
+  gap: 1rem;
+}
+.gap--20 {
+  gap: 1.25rem;
+}
+.gap--24 {
+  gap: 1.5rem;
+}
+
+.color--blue {
+  color: var(--blue);
+}
+.color--yellow {
+  color: var(--yellow);
+}
+.color--silver {
+  color: var(--silver);
+}
+
+.transparent {
+  opacity: 0.5;
 }
 
 .mb--16 {

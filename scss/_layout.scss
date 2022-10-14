@@ -109,3 +109,52 @@
     background-color: var(--yellow);
   }
 }
+
+.game-result {
+  width: 100vw;
+  padding: 2.8125rem 0;
+  background-color: var(--navy-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap {
+  &--16 {
+    gap: 1rem;
+  }
+  &--20 {
+    gap: 1.25rem;
+  }
+  &--24 {
+    gap: 1.5rem;
+  }
+}
+
+.color {
+  &--blue {
+    color: var(--blue);
+  }
+  &--yellow {
+    color: var(--yellow);
+  }
+  &--silver {
+    color: var(--silver);
+  }
+}
+
+.transparent {
+  opacity: 0.5;
+}

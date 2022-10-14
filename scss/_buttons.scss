@@ -8,7 +8,6 @@
     line-height: 1.5625rem;
     letter-spacing: 0.078125rem;
     font-weight: 700;
-    text-transform: uppercase;
     padding: 1rem 0 1.5rem;
     &--yellow {
       background-color: var(--yellow);
@@ -32,6 +31,9 @@
   }
   &--secondary {
     padding: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    letter-spacing: 0.0625rem;
     &--yellow {
       background-color: var(--yellow);
       box-shadow: inset 0px -0.25rem 0px var(--yellow-dark);
