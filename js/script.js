@@ -12,9 +12,9 @@ const score2 = document.getElementById("score-2");
 const ties = document.getElementById("ties");
 
 let p1IsX = true;
-let vsAi = false;
-let vsP2 = false;
-let isP1Turn = false;
+let vsAi;
+let vsP2;
+let isP1Turn;
 
 const handleToggleClickX = () => {
   toggleButtonX.classList.add("active");
@@ -41,7 +41,7 @@ const startGame = () => {
   for (const slot of slots) {
     slot.innerHTML = "";
   }
-  if (p1IsX) isP1Turn = true;
+  isP1Turn = p1IsX ? true : false;
 };
 
 const handleVsAiClick = () => {
@@ -72,6 +72,26 @@ const handleSlotLeave = (event) => {
     event.target.removeChild(event.target.firstChild);
 };
 
+const handleSlotClick = (event) => {
+  if (isP1Turn || (!isP1Turn && vsP2)) {
+    if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
+      const xIcon = document.createElement("img");
+      xIcon.src = "assets/icon-x.svg";
+      if (event.target.tagName === "DIV") {
+        event.target.appendChild(xIcon);
+      } else {
+        event.target.parentElement.appendChild(xIcon);
+      }
+    } else {
+      const oIcon = document.createElement("img");
+      oIcon.src = "assets/icon-o.svg";
+      event.target.appendChild(oIcon);
+    }
+    event.target.style.pointerEvents = "none";
+    console.log(p1IsX, vsAi, vsP2, isP1Turn);
+  }
+};
+
 toggleButtonX.addEventListener("click", handleToggleClickX);
 toggleButtonO.addEventListener("click", handleToggleClickO);
 vsAiButton.addEventListener("click", handleVsAiClick);
@@ -79,4 +99,5 @@ vsP2Button.addEventListener("click", handleVsP2Click);
 for (const slot of slots) {
   slot.addEventListener("mouseenter", handleSlotEnter);
   slot.addEventListener("mouseleave", handleSlotLeave);
+  slot.addEventListener("click", handleSlotClick);
 }
