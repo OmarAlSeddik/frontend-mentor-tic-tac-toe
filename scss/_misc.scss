@@ -25,7 +25,15 @@
 }
 
 .game-result {
-  width: 100vw;
   padding: 2.8125rem;
   background-color: var(--navy-light);
+}
+
+.modal {
+  min-width: 100vw;
+  top: 50%;
+  transform: translateY(-50%);
+  &::backdrop {
+    background-color: #00000080;
+  }
 }

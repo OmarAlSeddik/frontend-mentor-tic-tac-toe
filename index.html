@@ -63,7 +63,7 @@
         <img src="assets/icon-x.svg" alt="" class="icon--md" />
         <img src="assets/icon-o.svg" alt="" class="icon--md" />
       </div>
-      <div class="card--sm flex gap--12">
+      <div class="card--sm flex--center gap--12">
         <img
           src="assets/icon-x.svg"
           alt=""
@@ -77,29 +77,15 @@
       >
         <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
       </button>
-      <div class="flex--center card--lg"></div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg"></div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-o.svg" alt="" class="icon--lg" />
-      </div>
-      <div class="flex--center card--lg">
-        <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-      </div>
+      <div class="flex--center card--lg" id="0"></div>
+      <div class="flex--center card--lg" id="1"></div>
+      <div class="flex--center card--lg" id="2"></div>
+      <div class="flex--center card--lg" id="3"></div>
+      <div class="flex--center card--lg" id="4"></div>
+      <div class="flex--center card--lg" id="5"></div>
+      <div class="flex--center card--lg" id="6"></div>
+      <div class="flex--center card--lg" id="7"></div>
+      <div class="flex--center card--lg" id="8"></div>
       <div class="score bg--blue flex--center column">
         <div class="text" id="score-1-text"></div>
         <div class="heading heading--md" id="score-1">0</div>
@@ -114,12 +100,19 @@
       </div>
     </div>
     <!-- Game Result -->
-    <dialog>
+    <dialog class="modal" id="modal">
       <div class="game-result flex--center column">
-        <p class="heading--xs mb--16 color--silver">YOU WON!</p>
-        <div class="flex gap--24 mb--24">
-          <img src="assets/icon-x.svg" alt="" class="icon--lg" />
-          <p class="heading--lg color--blue">TAKES THE ROUND</p>
+        <p class="heading--xs mb--16 color--silver" id="game-result-text-1"></p>
+        <div class="flex--center gap--24 mb--24">
+          <img
+            src="assets/icon-x.svg"
+            alt=""
+            class="icon--lg"
+            id="game-result-icon"
+          />
+          <p class="heading--lg color--blue" id="game-result-text-2">
+            TAKES THE ROUND
+          </p>
         </div>
         <div class="button-container flex gap--16">
           <button class="button button--secondary button--secondary--silver">

@@ -13,12 +13,17 @@ const score1Text = document.getElementById("score-1-text");
 const score2Text = document.getElementById("score-2-text");
 const ties = document.getElementById("ties");
 const turnIndicator = document.getElementById("turn-indicator");
+const gameResultModal = document.getElementById("modal");
+const gameResultText1 = document.getElementById("game-result-text-1");
+const gameResultText2 = document.getElementById("game-result-text-2");
+const gameResultIcon = document.getElementById("game-result-icon");
 
 let p1IsX = true;
-let vsAi;
-let vsP2;
-let isP1Turn;
+let vsAi = false;
+let vsP2 = false;
+let isP1Turn = true;
 let turn = 1;
+const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 const handleToggleClickX = () => {
   toggleButtonX.classList.add("active");
@@ -26,6 +31,7 @@ const handleToggleClickX = () => {
   toggleButtonO.classList.remove("active");
   toggleOIcon.className = "icon--md icon--silver";
   p1IsX = true;
+  isP1Turn = true;
 };
 
 const handleToggleClickO = () => {
@@ -34,6 +40,7 @@ const handleToggleClickO = () => {
   toggleButtonX.classList.remove("active");
   toggleXIcon.className = "icon--md icon--silver";
   p1IsX = false;
+  isP1Turn = false;
 };
 
 const startGame = () => {
@@ -42,11 +49,13 @@ const startGame = () => {
   score1.innerHTML = 0;
   score2.innerHTML = 0;
   ties.innerHTML = 0;
+  for (let i = 0; i < board.length; i++) {
+    board[i] = i;
+  }
   for (const slot of slots) {
     slot.innerHTML = "";
     slot.style.pointerEvents = "auto";
   }
-  isP1Turn = p1IsX ? true : false;
 };
 
 const handleVsAiClick = () => {
@@ -61,6 +70,46 @@ const handleVsP2Click = () => {
   score1Text.textContent = p1IsX ? "X (P1)" : "X (P2)";
   score2Text.textContent = p1IsX ? "O (P2)" : "O (P1)";
   startGame();
+};
+
+const getAvailableActions = (board) => {
+  return board.filter((slot) => slot !== "x" && slot !== "o");
+};
+
+const gameWon = (mark) => {
+  return (
+    (board[0] === mark && board[1] === mark && board[2] === mark) ||
+    (board[3] === mark && board[4] === mark && board[5] === mark) ||
+    (board[6] === mark && board[7] === mark && board[8] === mark) ||
+    (board[0] === mark && board[3] === mark && board[6] === mark) ||
+    (board[1] === mark && board[4] === mark && board[7] === mark) ||
+    (board[2] === mark && board[5] === mark && board[8] === mark) ||
+    (board[0] === mark && board[4] === mark && board[8] === mark) ||
+    (board[2] === mark && board[4] === mark && board[6] === mark)
+  );
+};
+
+const checkCondition = (mark) => {
+  if (gameWon(mark)) {
+    if (((p1IsX && mark === "x") || (!p1IsX && mark !== "x")) && vsAi) {
+      gameResultText1.textContent = "YOU WON!";
+    }
+    if (((p1IsX && mark !== "x") || (!p1IsX && mark === "x")) && vsAi) {
+      gameResultText1.textContent = "OH NO, YOU LOST...";
+    }
+    if (((p1IsX && mark === "x") || (!p1IsX && mark !== "x")) && vsP2) {
+      gameResultText1.textContent = "PLAYER 1 WINS!";
+    }
+    if (((p1IsX && mark !== "x") || (!p1IsX && mark === "x")) && vsP2) {
+      gameResultText1.textContent = "PLAYER 2 WINS!";
+    }
+    gameResultIcon.src = `assets/icon-${mark}.svg`;
+    gameResultText2.className =
+      mark === "x" ? "heading--lg color--blue" : "heading--lg color--yellow";
+    gameResultModal.showModal();
+  }
+  turn++;
+  if (turn === 10) console.log("tie");
 };
 
 const handleSlotEnter = (event) => {
@@ -92,18 +141,19 @@ const handleSlotClick = (event) => {
       xIcon.className = "x";
       event.target.appendChild(xIcon);
       turnIndicator.src = "assets/icon-o.svg";
+      board[event.target.id] = "x";
+      checkCondition("x");
     } else {
       const oIcon = document.createElement("img");
       oIcon.src = "assets/icon-o.svg";
       oIcon.className = "o";
       event.target.appendChild(oIcon);
       turnIndicator.src = "assets/icon-x.svg";
+      board[event.target.id] = "o";
+      checkCondition("o");
     }
     event.target.style.pointerEvents = "none";
     isP1Turn = !isP1Turn;
-    turn++;
-    // Check for winning condition here
-    if (turn === 10) console.log("tie");
   }
 };
 
