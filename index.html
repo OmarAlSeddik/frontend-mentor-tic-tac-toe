@@ -64,7 +64,12 @@
         <img src="assets/icon-o.svg" alt="" class="icon--md" />
       </div>
       <div class="card--sm flex gap--12">
-        <img src="assets/icon-x.svg" alt="" class="icon--sm icon--silver" />
+        <img
+          src="assets/icon-x.svg"
+          alt=""
+          class="icon--sm icon--silver"
+          id="turn-indicator"
+        />
         <p class="heading--xs">TURN</p>
       </div>
       <button
@@ -96,7 +101,7 @@
         <img src="assets/icon-x.svg" alt="" class="icon--lg" />
       </div>
       <div class="score bg--blue flex--center column">
-        <div class="text">X (YOU)</div>
+        <div class="text" id="score-1-text"></div>
         <div class="heading heading--md" id="score-1">0</div>
       </div>
       <div class="score bg--silver flex--center column">
@@ -104,7 +109,7 @@
         <div class="heading heading--md" id="ties">0</div>
       </div>
       <div class="score bg--yellow flex--center column">
-        <div class="text">O (CPU)</div>
+        <div class="text" id="score-2-text"></div>
         <div class="heading heading--md" id="score-2">0</div>
       </div>
     </div>

@@ -9,12 +9,16 @@ const gameBoardPage = document.getElementById("game-board-page");
 const slots = document.querySelectorAll(".card--lg");
 const score1 = document.getElementById("score-1");
 const score2 = document.getElementById("score-2");
+const score1Text = document.getElementById("score-1-text");
+const score2Text = document.getElementById("score-2-text");
 const ties = document.getElementById("ties");
+const turnIndicator = document.getElementById("turn-indicator");
 
 let p1IsX = true;
 let vsAi;
 let vsP2;
 let isP1Turn;
+let turn = 1;
 
 const handleToggleClickX = () => {
   toggleButtonX.classList.add("active");
@@ -40,36 +44,44 @@ const startGame = () => {
   ties.innerHTML = 0;
   for (const slot of slots) {
     slot.innerHTML = "";
+    slot.style.pointerEvents = "auto";
   }
   isP1Turn = p1IsX ? true : false;
 };
 
 const handleVsAiClick = () => {
   vsAi = true;
+  score1Text.textContent = p1IsX ? "X (YOU)" : "X (CPU)";
+  score2Text.textContent = p1IsX ? "O (CPU)" : "O (YOU)";
   startGame();
 };
 
 const handleVsP2Click = () => {
   vsP2 = true;
+  score1Text.textContent = p1IsX ? "X (P1)" : "X (P2)";
+  score2Text.textContent = p1IsX ? "O (P2)" : "O (P1)";
   startGame();
 };
 
 const handleSlotEnter = (event) => {
-  if (isP1Turn && p1IsX) {
+  if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
     const xOutline = document.createElement("img");
     xOutline.src = "assets/icon-x-outline.svg";
+    xOutline.id = "outline";
+    xOutline.style.pointerEvents = "none";
     event.target.appendChild(xOutline);
   }
-  if (isP1Turn && !p1IsX) {
+  if ((isP1Turn && !p1IsX) || (!isP1Turn && p1IsX)) {
     const oOutline = document.createElement("img");
     oOutline.src = "assets/icon-o-outline.svg";
+    oOutline.id = "outline";
+    oOutline.style.pointerEvents = "none";
     event.target.appendChild(oOutline);
   }
 };
 
-const handleSlotLeave = (event) => {
-  if (event.target.children.length > 0)
-    event.target.removeChild(event.target.firstChild);
+const handleSlotLeave = () => {
+  document.querySelector("#outline").remove();
 };
 
 const handleSlotClick = (event) => {
@@ -77,18 +89,21 @@ const handleSlotClick = (event) => {
     if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
       const xIcon = document.createElement("img");
       xIcon.src = "assets/icon-x.svg";
-      if (event.target.tagName === "DIV") {
-        event.target.appendChild(xIcon);
-      } else {
-        event.target.parentElement.appendChild(xIcon);
-      }
+      xIcon.className = "x";
+      event.target.appendChild(xIcon);
+      turnIndicator.src = "assets/icon-o.svg";
     } else {
       const oIcon = document.createElement("img");
       oIcon.src = "assets/icon-o.svg";
+      oIcon.className = "o";
       event.target.appendChild(oIcon);
+      turnIndicator.src = "assets/icon-x.svg";
     }
     event.target.style.pointerEvents = "none";
-    console.log(p1IsX, vsAi, vsP2, isP1Turn);
+    isP1Turn = !isP1Turn;
+    turn++;
+    // Check for winning condition here
+    if (turn === 10) console.log("tie");
   }
 };
 
