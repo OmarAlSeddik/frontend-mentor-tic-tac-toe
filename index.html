@@ -74,6 +74,7 @@
       </div>
       <button
         class="justify-self--right button button--secondary button--secondary--silver"
+        id="restart-button"
       >
         <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
       </button>
@@ -104,22 +105,21 @@
       <div class="game-result flex--center column">
         <p class="heading--xs mb--16 color--silver" id="game-result-text-1"></p>
         <div class="flex--center gap--24 mb--24">
-          <img
-            src="assets/icon-x.svg"
-            alt=""
-            class="icon--lg"
-            id="game-result-icon"
-          />
-          <p class="heading--lg color--blue" id="game-result-text-2">
-            TAKES THE ROUND
-          </p>
+          <img src="" alt="" class="icon--lg" id="game-result-icon" />
+          <p class="heading--lg color--blue" id="game-result-text-2"></p>
         </div>
         <div class="button-container flex gap--16">
-          <button class="button button--secondary button--secondary--silver">
-            <p class="heading--xs">QUIT</p>
+          <button
+            class="button button--secondary button--secondary--silver"
+            id="modal-button-1"
+          >
+            <p class="heading--xs" id="modal-button-1-text">QUIT</p>
           </button>
-          <button class="button button--secondary button--secondary--yellow">
-            <p class="heading--xs">NEXT ROUND</p>
+          <button
+            class="button button--secondary button--secondary--yellow"
+            id="modal-button-2"
+          >
+            <p class="heading--xs" id="modal-button-2-text">NEXT ROUND</p>
           </button>
         </div>
       </div>
