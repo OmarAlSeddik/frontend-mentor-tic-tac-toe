@@ -254,6 +254,21 @@ body {
   background-color: rgba(0, 0, 0, 0.5019607843);
 }
 
+.slot--blue {
+  background-color: var(--blue);
+  box-shadow: inset 0px -0.5rem 0px var(--blue-dark);
+}
+.slot--blue > * {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
+}
+.slot--yellow {
+  background-color: var(--yellow);
+  box-shadow: inset 0px -0.5rem 0px var(--yellow-dark);
+}
+.slot--yellow > * {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
+}
+
 .heading--lg {
   font-weight: 700;
   font-size: 2.5rem;

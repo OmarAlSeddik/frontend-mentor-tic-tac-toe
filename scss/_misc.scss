@@ -37,3 +37,22 @@
     background-color: #00000080;
   }
 }
+
+.slot {
+  &--blue {
+    background-color: var(--blue);
+    box-shadow: inset 0px -0.5rem 0px var(--blue-dark);
+    & > * {
+      filter: brightness(0) saturate(100%) invert(12%) sepia(16%)
+        saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
+    }
+  }
+  &--yellow {
+    background-color: var(--yellow);
+    box-shadow: inset 0px -0.5rem 0px var(--yellow-dark);
+    & > * {
+      filter: brightness(0) saturate(100%) invert(12%) sepia(16%)
+        saturate(1249%) hue-rotate(157deg) brightness(97%) contrast(92%);
+    }
+  }
+}

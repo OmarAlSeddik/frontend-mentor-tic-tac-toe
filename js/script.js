@@ -55,6 +55,8 @@ const startGame = () => {
   for (const slot of slots) {
     slot.innerHTML = "";
     slot.style.pointerEvents = "auto";
+    slot.classList.remove("slot--blue");
+    slot.classList.remove("slot--yellow");
   }
   isP1Turn = p1IsX ? true : false;
 };
@@ -78,16 +80,55 @@ const getAvailableActions = () => {
 };
 
 const gameWon = (mark) => {
-  return (
-    (board[0] === mark && board[1] === mark && board[2] === mark) ||
-    (board[3] === mark && board[4] === mark && board[5] === mark) ||
-    (board[6] === mark && board[7] === mark && board[8] === mark) ||
-    (board[0] === mark && board[3] === mark && board[6] === mark) ||
-    (board[1] === mark && board[4] === mark && board[7] === mark) ||
-    (board[2] === mark && board[5] === mark && board[8] === mark) ||
-    (board[0] === mark && board[4] === mark && board[8] === mark) ||
-    (board[2] === mark && board[4] === mark && board[6] === mark)
-  );
+  const className = mark === "x" ? "slot--blue" : "slot--yellow";
+  if (board[0] === mark && board[1] === mark && board[2] === mark) {
+    slots[0].classList.add(className);
+    slots[1].classList.add(className);
+    slots[2].classList.add(className);
+    return true;
+  }
+  if (board[3] === mark && board[4] === mark && board[5] === mark) {
+    slots[3].classList.add(className);
+    slots[4].classList.add(className);
+    slots[5].classList.add(className);
+    return true;
+  }
+  if (board[6] === mark && board[7] === mark && board[8] === mark) {
+    slots[6].classList.add(className);
+    slots[7].classList.add(className);
+    slots[8].classList.add(className);
+    return true;
+  }
+  if (board[0] === mark && board[3] === mark && board[6] === mark) {
+    slots[0].classList.add(className);
+    slots[3].classList.add(className);
+    slots[6].classList.add(className);
+    return true;
+  }
+  if (board[1] === mark && board[4] === mark && board[7] === mark) {
+    slots[1].classList.add(className);
+    slots[4].classList.add(className);
+    slots[7].classList.add(className);
+    return true;
+  }
+  if (board[2] === mark && board[5] === mark && board[8] === mark) {
+    slots[2].classList.add(className);
+    slots[5].classList.add(className);
+    slots[8].classList.add(className);
+    return true;
+  }
+  if (board[0] === mark && board[4] === mark && board[8] === mark) {
+    slots[0].classList.add(className);
+    slots[4].classList.add(className);
+    slots[8].classList.add(className);
+    return true;
+  }
+  if (board[2] === mark && board[4] === mark && board[6] === mark) {
+    slots[2].classList.add(className);
+    slots[4].classList.add(className);
+    slots[6].classList.add(className);
+    return true;
+  }
 };
 
 const checkCondition = (mark) => {
@@ -128,6 +169,35 @@ const checkCondition = (mark) => {
     modalButton2Text.textContent = "NEXT ROUND";
     ties.textContent = parseInt(ties.textContent) + 1;
     gameResultModal.showModal();
+  }
+};
+
+const aiAction = () => {
+  if (!modal.open) {
+    const availableActions = getAvailableActions();
+    const aiMark = p1IsX ? "o" : "x";
+    // const bestMoveIndex = minimax(board, aiMark).index;
+    const randomIndex = Math.floor(Math.random() * availableActions.length);
+    const randomAction = availableActions[randomIndex];
+    if (aiMark === "x") {
+      const xIcon = document.createElement("img");
+      xIcon.src = "assets/icon-x.svg";
+      xIcon.className = "x";
+      slots[randomAction].appendChild(xIcon);
+      turnIndicator.src = "assets/icon-o.svg";
+      board[randomAction] = "x";
+      checkCondition("x");
+    }
+    if (aiMark === "o") {
+      const xIcon = document.createElement("img");
+      xIcon.src = "assets/icon-o.svg";
+      xIcon.className = "o";
+      slots[randomAction].appendChild(xIcon);
+      turnIndicator.src = "assets/icon-x.svg";
+      board[randomAction] = "o";
+      checkCondition("o");
+    }
+    slots[randomAction].style.pointerEvents = "none";
   }
 };
 
@@ -172,7 +242,8 @@ const handleSlotClick = (event) => {
       checkCondition("o");
     }
     event.target.style.pointerEvents = "none";
-    isP1Turn = !isP1Turn;
+    if (vsAi) aiAction();
+    else isP1Turn = !isP1Turn;
   }
 };
 
