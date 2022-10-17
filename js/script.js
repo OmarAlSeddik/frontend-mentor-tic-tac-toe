@@ -1,3 +1,4 @@
+// ---- DOCUMENT ELEMENTS ---- //
 const toggleButtonX = document.getElementById("toggle-x");
 const toggleXIcon = document.getElementById("toggle-x-icon");
 const toggleButtonO = document.getElementById("toggle-o");
@@ -22,29 +23,13 @@ const modalButton1 = document.getElementById("modal-button-1");
 const modalButton2 = document.getElementById("modal-button-2");
 const modalButton1Text = document.getElementById("modal-button-1-text");
 const modalButton2Text = document.getElementById("modal-button-2-text");
-
+// ---- GLOBAL VARIABLES ---- //
 let p1IsX = true;
+let isP1Turn = true;
 let vsAi = false;
 let vsP2 = false;
-let isP1Turn = true;
 const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-const handleToggleClickX = () => {
-  toggleButtonX.classList.add("active");
-  toggleXIcon.className = "icon--md icon--navy";
-  toggleButtonO.classList.remove("active");
-  toggleOIcon.className = "icon--md icon--silver";
-  p1IsX = true;
-};
-
-const handleToggleClickO = () => {
-  toggleButtonO.classList.add("active");
-  toggleOIcon.className = "icon--md icon--navy";
-  toggleButtonX.classList.remove("active");
-  toggleXIcon.className = "icon--md icon--silver";
-  p1IsX = false;
-};
-
+// ---- GENERIC FUNCTIONS ---- //
 const startGame = () => {
   newGamePage.classList.add("hidden");
   gameBoardPage.classList.remove("hidden");
@@ -59,26 +44,16 @@ const startGame = () => {
     slot.classList.remove("slot--yellow");
   }
   isP1Turn = p1IsX ? true : false;
-};
-
-const handleVsAiClick = () => {
-  vsAi = true;
-  score1Text.textContent = p1IsX ? "X (YOU)" : "X (CPU)";
-  score2Text.textContent = p1IsX ? "O (CPU)" : "O (YOU)";
-  startGame();
-};
-
-const handleVsP2Click = () => {
-  vsP2 = true;
-  score1Text.textContent = p1IsX ? "X (P1)" : "X (P2)";
-  score2Text.textContent = p1IsX ? "O (P2)" : "O (P1)";
-  startGame();
+  if (!p1IsX && vsAi) {
+    aiAction();
+    isP1Turn = !isP1Turn;
+  }
 };
 
 const getAvailableActions = () => {
   return board.filter((slot) => slot !== "x" && slot !== "o");
 };
-
+// ---- WINNING CONDITIONS ---- //
 const gameWon = (mark) => {
   const className = mark === "x" ? "slot--blue" : "slot--yellow";
   if (board[0] === mark && board[1] === mark && board[2] === mark) {
@@ -131,6 +106,19 @@ const gameWon = (mark) => {
   }
 };
 
+const gameWonSim = (mark, simBoard = board) => {
+  return (
+    (simBoard[0] == mark && simBoard[1] == mark && simBoard[2] == mark) ||
+    (simBoard[3] == mark && simBoard[4] == mark && simBoard[5] == mark) ||
+    (simBoard[6] == mark && simBoard[7] == mark && simBoard[8] == mark) ||
+    (simBoard[0] == mark && simBoard[3] == mark && simBoard[6] == mark) ||
+    (simBoard[1] == mark && simBoard[4] == mark && simBoard[7] == mark) ||
+    (simBoard[2] == mark && simBoard[5] == mark && simBoard[8] == mark) ||
+    (simBoard[0] == mark && simBoard[4] == mark && simBoard[8] == mark) ||
+    (simBoard[2] == mark && simBoard[4] == mark && simBoard[6] == mark)
+  );
+};
+
 const checkCondition = (mark) => {
   if (gameWon(mark)) {
     if (((p1IsX && mark === "x") || (!p1IsX && mark !== "x")) && vsAi) {
@@ -171,34 +159,108 @@ const checkCondition = (mark) => {
     gameResultModal.showModal();
   }
 };
+// ---- AI ---- //
+const minimax = (newBoard, player) => {
+  const availableActions = getAvailableActions(newBoard);
+  let playerMark = p1IsX ? "x" : "o";
+  let aiMark = p1IsX ? "o" : "x";
+  if (gameWonSim(playerMark, newBoard)) {
+    return { score: -10 };
+  } else if (gameWonSim(aiMark, newBoard)) {
+    return { score: 10 };
+  } else if (availableActions.length === 0) {
+    return { score: 0 };
+  }
+  const moves = [];
+  for (let i = 0; i < availableActions.length; i++) {
+    const move = {};
+    move.index = newBoard[availableActions[i]];
+    newBoard[availableActions[i]] = player;
+    if (player == aiMark) {
+      const result = minimax(newBoard, playerMark);
+      move.score = result.score;
+    } else {
+      const result = minimax(newBoard, aiMark);
+      move.score = result.score;
+    }
+    newBoard[availableActions[i]] = move.index;
+    moves.push(move);
+  }
+  let bestMove;
+  if (player === aiMark) {
+    let bestScore = -10000;
+    for (let i = 0; i < moves.length; i++) {
+      if (moves[i].score > bestScore) {
+        bestScore = moves[i].score;
+        bestMove = i;
+      }
+    }
+  } else {
+    let bestScore = 10000;
+    for (let i = 0; i < moves.length; i++) {
+      if (moves[i].score < bestScore) {
+        bestScore = moves[i].score;
+        bestMove = i;
+      }
+    }
+  }
+  return moves[bestMove];
+};
 
 const aiAction = () => {
   if (!modal.open) {
-    const availableActions = getAvailableActions();
     const aiMark = p1IsX ? "o" : "x";
-    // const bestMoveIndex = minimax(board, aiMark).index;
-    const randomIndex = Math.floor(Math.random() * availableActions.length);
-    const randomAction = availableActions[randomIndex];
+    const bestMoveIndex = minimax(board, aiMark).index;
     if (aiMark === "x") {
       const xIcon = document.createElement("img");
       xIcon.src = "assets/icon-x.svg";
       xIcon.className = "x";
-      slots[randomAction].appendChild(xIcon);
+      slots[bestMoveIndex].appendChild(xIcon);
       turnIndicator.src = "assets/icon-o.svg";
-      board[randomAction] = "x";
+      board[bestMoveIndex] = "x";
       checkCondition("x");
     }
     if (aiMark === "o") {
       const xIcon = document.createElement("img");
       xIcon.src = "assets/icon-o.svg";
       xIcon.className = "o";
-      slots[randomAction].appendChild(xIcon);
+      slots[bestMoveIndex].appendChild(xIcon);
       turnIndicator.src = "assets/icon-x.svg";
-      board[randomAction] = "o";
+      board[bestMoveIndex] = "o";
       checkCondition("o");
     }
-    slots[randomAction].style.pointerEvents = "none";
+    slots[bestMoveIndex].style.pointerEvents = "none";
   }
+};
+// ---- EVENT HANDLERS ---- //
+const handleToggleClickX = () => {
+  toggleButtonX.classList.add("active");
+  toggleXIcon.className = "icon--md icon--navy";
+  toggleButtonO.classList.remove("active");
+  toggleOIcon.className = "icon--md icon--silver";
+  p1IsX = true;
+};
+
+const handleToggleClickO = () => {
+  toggleButtonO.classList.add("active");
+  toggleOIcon.className = "icon--md icon--navy";
+  toggleButtonX.classList.remove("active");
+  toggleXIcon.className = "icon--md icon--silver";
+  p1IsX = false;
+};
+
+const handleVsAiClick = () => {
+  vsAi = true;
+  score1Text.textContent = p1IsX ? "X (YOU)" : "X (CPU)";
+  score2Text.textContent = p1IsX ? "O (CPU)" : "O (YOU)";
+  startGame();
+};
+
+const handleVsP2Click = () => {
+  vsP2 = true;
+  score1Text.textContent = p1IsX ? "X (P1)" : "X (P2)";
+  score2Text.textContent = p1IsX ? "O (P2)" : "O (P1)";
+  startGame();
 };
 
 const handleSlotEnter = (event) => {
@@ -275,7 +337,7 @@ const handleButton2Click = () => {
   gameResultModal.close();
   startGame();
 };
-
+// ---- EVENT LISTENERS ---- //
 toggleButtonX.addEventListener("click", handleToggleClickX);
 toggleButtonO.addEventListener("click", handleToggleClickO);
 vsAiButton.addEventListener("click", handleVsAiClick);
