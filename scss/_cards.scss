@@ -6,6 +6,10 @@
     width: 8.75rem;
     height: 8.75rem;
     cursor: pointer;
+    @media (max-width: 25rem) {
+      width: 6rem;
+      height: 6rem;
+    }
   }
   &--md {
     background-color: var(--navy-light);

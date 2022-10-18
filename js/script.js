@@ -28,15 +28,63 @@ let p1IsX = true;
 let isP1Turn = true;
 let vsAi = false;
 let vsP2 = false;
-const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let gameStarted = false;
+let gameEnded = false;
+let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let xWins = 0;
+let nTies = 0;
+let oWins = 0;
+let turnIndicatorSrc = "assets/icon-x.svg";
+
+p1IsX = JSON.parse(localStorage.getItem("p1-is-x"));
+isP1Turn = JSON.parse(localStorage.getItem("is-p1-turn"));
+vsAi = JSON.parse(localStorage.getItem("vs-ai"));
+vsP2 = JSON.parse(localStorage.getItem("vs-p2"));
+gameStarted = JSON.parse(localStorage.getItem("game-started"));
+gameEnded = JSON.parse(localStorage.getItem("game-ended"));
+board = JSON.parse(localStorage.getItem("board"));
+xWins = JSON.parse(localStorage.getItem("x-wins"));
+nTies = JSON.parse(localStorage.getItem("n-ties"));
+oWins = JSON.parse(localStorage.getItem("o-wins"));
+turnIndicatorSrc = localStorage.getItem("turn-indicator-src");
+score1Text.textContent = localStorage.getItem("score-1-text");
+score2Text.textContent = localStorage.getItem("score-2-text");
 // ---- GENERIC FUNCTIONS ---- //
+if (gameStarted) {
+  newGamePage.classList.add("hidden");
+  gameBoardPage.classList.remove("hidden");
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === "x") {
+      const xIcon = document.createElement("img");
+      xIcon.src = "assets/icon-x.svg";
+      xIcon.className = "x";
+      slots[i].appendChild(xIcon);
+      slots[i].style.pointerEvents = "none";
+    }
+    if (board[i] === "o") {
+      const oIcon = document.createElement("img");
+      oIcon.src = "assets/icon-o.svg";
+      oIcon.className = "o";
+      slots[i].appendChild(oIcon);
+      slots[i].style.pointerEvents = "none";
+    }
+  }
+  score1.textContent = xWins || 0;
+  ties.textContent = nTies || 0;
+  score2.textContent = oWins || 0;
+  turnIndicator.src = turnIndicatorSrc;
+}
+
 const startGame = () => {
   newGamePage.classList.add("hidden");
   gameBoardPage.classList.remove("hidden");
-  turnIndicator.src = "assets/icon-x.svg";
+  turnIndicatorSrc = "assets/icon-x.svg";
+  localStorage.setItem("turn-indicator-src", turnIndicatorSrc);
+  turnIndicator.src = turnIndicatorSrc;
   for (let i = 0; i < board.length; i++) {
     board[i] = i;
   }
+  localStorage.setItem("board", JSON.stringify(board));
   for (const slot of slots) {
     slot.innerHTML = "";
     slot.style.pointerEvents = "auto";
@@ -44,10 +92,15 @@ const startGame = () => {
     slot.classList.remove("slot--yellow");
   }
   isP1Turn = p1IsX ? true : false;
+  localStorage.setItem("is-p1-turn", isP1Turn);
   if (!p1IsX && vsAi) {
     aiAction();
     isP1Turn = !isP1Turn;
+    localStorage.setItem("is-p1-turn", isP1Turn);
   }
+  localStorage.setItem("board", JSON.stringify(board));
+  gameStarted = true;
+  localStorage.setItem("game-started", gameStarted);
 };
 
 const getAvailableActions = () => {
@@ -121,21 +174,27 @@ const gameWonSim = (mark, simBoard = board) => {
 
 const checkCondition = (mark) => {
   if (gameWon(mark)) {
+    if (mark === "x") {
+      if (!gameEnded) xWins++;
+      localStorage.setItem("x-wins", xWins);
+      score1.textContent = xWins;
+    }
+    if (mark === "o") {
+      if (!gameEnded) oWins++;
+      localStorage.setItem("o-wins", oWins);
+      score2.textContent = oWins;
+    }
     if (((p1IsX && mark === "x") || (!p1IsX && mark !== "x")) && vsAi) {
       gameResultText1.textContent = "YOU WON!";
-      score1.textContent = parseInt(score1.textContent) + 1;
     }
     if (((p1IsX && mark !== "x") || (!p1IsX && mark === "x")) && vsAi) {
       gameResultText1.textContent = "OH NO, YOU LOST...";
-      score2.textContent = parseInt(score2.textContent) + 1;
     }
     if (((p1IsX && mark === "x") || (!p1IsX && mark !== "x")) && vsP2) {
       gameResultText1.textContent = "PLAYER 1 WINS!";
-      score1.textContent = parseInt(score1.textContent) + 1;
     }
     if (((p1IsX && mark !== "x") || (!p1IsX && mark === "x")) && vsP2) {
       gameResultText1.textContent = "PLAYER 2 WINS!";
-      score2.textContent = parseInt(score2.textContent) + 1;
     }
     gameResultIcon.style.display = "block";
     gameResultText1.style.display = "block";
@@ -145,6 +204,8 @@ const checkCondition = (mark) => {
     gameResultText2.innerText = "TAKES THE ROUND";
     modalButton1Text.textContent = "QUIT";
     modalButton2Text.textContent = "NEXT ROUND";
+    gameEnded = true;
+    localStorage.setItem("game-ended", gameEnded);
     gameResultModal.showModal();
   }
   const availableActions = getAvailableActions();
@@ -155,10 +216,19 @@ const checkCondition = (mark) => {
     gameResultText2.innerText = "ROUND TIED";
     modalButton1Text.textContent = "QUIT";
     modalButton2Text.textContent = "NEXT ROUND";
-    ties.textContent = parseInt(ties.textContent) + 1;
+    if (!gameEnded) nTies++;
+    localStorage.setItem("n-ties", nTies);
+    ties.textContent = nTies;
+    gameEnded = true;
+    localStorage.setItem("game-ended", gameEnded);
     gameResultModal.showModal();
   }
 };
+
+if (gameEnded) {
+  checkCondition("x");
+  if (!gameResultModal.open) checkCondition("o");
+}
 // ---- AI ---- //
 const minimax = (newBoard, player) => {
   const availableActions = getAvailableActions(newBoard);
@@ -216,17 +286,23 @@ const aiAction = () => {
       xIcon.src = "assets/icon-x.svg";
       xIcon.className = "x";
       slots[bestMoveIndex].appendChild(xIcon);
-      turnIndicator.src = "assets/icon-o.svg";
+      turnIndicatorSrc = "assets/icon-o.svg";
+      localStorage.setItem("turn-indicator-src", turnIndicatorSrc);
+      turnIndicator.src = turnIndicatorSrc;
       board[bestMoveIndex] = "x";
+      localStorage.setItem("board", JSON.stringify(board));
       checkCondition("x");
     }
     if (aiMark === "o") {
-      const xIcon = document.createElement("img");
-      xIcon.src = "assets/icon-o.svg";
-      xIcon.className = "o";
-      slots[bestMoveIndex].appendChild(xIcon);
-      turnIndicator.src = "assets/icon-x.svg";
+      const oIcon = document.createElement("img");
+      oIcon.src = "assets/icon-o.svg";
+      oIcon.className = "o";
+      slots[bestMoveIndex].appendChild(oIcon);
+      turnIndicatorSrc = "assets/icon-x.svg";
+      localStorage.setItem("turn-indicator-src", turnIndicatorSrc);
+      turnIndicator.src = turnIndicatorSrc;
       board[bestMoveIndex] = "o";
+      localStorage.setItem("board", JSON.stringify(board));
       checkCondition("o");
     }
     slots[bestMoveIndex].style.pointerEvents = "none";
@@ -239,6 +315,7 @@ const handleToggleClickX = () => {
   toggleButtonO.classList.remove("active");
   toggleOIcon.className = "icon--md icon--silver";
   p1IsX = true;
+  localStorage.setItem("p1-is-x", JSON.parse(p1IsX));
 };
 
 const handleToggleClickO = () => {
@@ -247,19 +324,30 @@ const handleToggleClickO = () => {
   toggleButtonX.classList.remove("active");
   toggleXIcon.className = "icon--md icon--silver";
   p1IsX = false;
+  localStorage.setItem("p1-is-x", JSON.parse(p1IsX));
 };
 
 const handleVsAiClick = () => {
   vsAi = true;
+  vsP2 = false;
+  localStorage.setItem("vs-ai", JSON.parse(vsAi));
+  localStorage.setItem("vs-p2", JSON.parse(vsP2));
   score1Text.textContent = p1IsX ? "X (YOU)" : "X (CPU)";
   score2Text.textContent = p1IsX ? "O (CPU)" : "O (YOU)";
+  localStorage.setItem("score-1-text", score1Text.textContent);
+  localStorage.setItem("score-2-text", score2Text.textContent);
   startGame();
 };
 
 const handleVsP2Click = () => {
+  vsAi = false;
   vsP2 = true;
+  localStorage.setItem("vs-ai", JSON.parse(vsAi));
+  localStorage.setItem("vs-p2", JSON.parse(vsP2));
   score1Text.textContent = p1IsX ? "X (P1)" : "X (P2)";
   score2Text.textContent = p1IsX ? "O (P2)" : "O (P1)";
+  localStorage.setItem("score-1-text", score1Text.textContent);
+  localStorage.setItem("score-2-text", score2Text.textContent);
   startGame();
 };
 
@@ -291,21 +379,30 @@ const handleSlotClick = (event) => {
       xIcon.src = "assets/icon-x.svg";
       xIcon.className = "x";
       event.target.appendChild(xIcon);
-      turnIndicator.src = "assets/icon-o.svg";
+      turnIndicatorSrc = "assets/icon-o.svg";
+      localStorage.setItem("turn-indicator-src", turnIndicatorSrc);
+      turnIndicator.src = turnIndicatorSrc;
       board[event.target.id] = "x";
+      localStorage.setItem("board", JSON.stringify(board));
       checkCondition("x");
     } else {
       const oIcon = document.createElement("img");
       oIcon.src = "assets/icon-o.svg";
       oIcon.className = "o";
       event.target.appendChild(oIcon);
-      turnIndicator.src = "assets/icon-x.svg";
+      turnIndicatorSrc = "assets/icon-x.svg";
+      localStorage.setItem("turn-indicator-src", turnIndicatorSrc);
+      turnIndicator.src = turnIndicatorSrc;
       board[event.target.id] = "o";
+      localStorage.setItem("board", JSON.stringify(board));
       checkCondition("o");
     }
     event.target.style.pointerEvents = "none";
     if (vsAi) aiAction();
-    else isP1Turn = !isP1Turn;
+    else {
+      isP1Turn = !isP1Turn;
+      localStorage.setItem("is-p1-turn", isP1Turn);
+    }
   }
 };
 
@@ -324,17 +421,31 @@ const handleButton1Click = () => {
     gameResultModal.close();
   }
   if (modalButton1.children[0].textContent === "QUIT") {
-    score1.textContent = 0;
-    score2.textContent = 0;
-    ties.textContent = 0;
+    xWins = 0;
+    oWins = 0;
+    nTies = 0;
+    p1IsX = true;
+    localStorage.setItem("x-wins", xWins);
+    localStorage.setItem("o-wins", oWins);
+    localStorage.setItem("n-ties", nTies);
+    localStorage.setItem("p1-is-x", p1IsX);
+    score1.textContent = xWins;
+    ties.textContent = nTies;
+    score2.textContent = oWins;
     gameResultModal.close();
     gameBoardPage.classList.add("hidden");
     newGamePage.classList.remove("hidden");
+    gameStarted = false;
+    gameEnded = false;
+    localStorage.setItem("game-started", gameStarted);
+    localStorage.setItem("game-ended", gameEnded);
   }
 };
 
 const handleButton2Click = () => {
   gameResultModal.close();
+  gameEnded = false;
+  localStorage.setItem("game-ended", gameEnded);
   startGame();
 };
 // ---- EVENT LISTENERS ---- //

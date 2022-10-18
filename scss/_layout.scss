@@ -49,4 +49,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
+
+  grid > * {
+    width: 8.75rem;
+    place-items: center;
+    @media (max-width: 25rem) {
+      width: 6rem;
+    }
+  }
 }

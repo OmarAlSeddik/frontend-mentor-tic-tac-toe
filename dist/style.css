@@ -119,6 +119,12 @@ body {
   height: 8.75rem;
   cursor: pointer;
 }
+@media (max-width: 25rem) {
+  .card--lg {
+    width: 6rem;
+    height: 6rem;
+  }
+}
 .card--md {
   background-color: var(--navy-light);
   box-shadow: inset 0px -0.5rem 0px var(--navy-dark);
@@ -201,6 +207,15 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
+}
+.grid grid > * {
+  width: 8.75rem;
+  place-items: center;
+}
+@media (max-width: 25rem) {
+  .grid grid > * {
+    width: 6rem;
+  }
 }
 
 .mb--16 {
