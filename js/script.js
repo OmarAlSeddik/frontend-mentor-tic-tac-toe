@@ -24,29 +24,40 @@ const modalButton2 = document.getElementById("modal-button-2");
 const modalButton1Text = document.getElementById("modal-button-1-text");
 const modalButton2Text = document.getElementById("modal-button-2-text");
 // ---- GLOBAL VARIABLES ---- //
-let p1IsX = true;
-let isP1Turn = true;
-let vsAi = false;
-let vsP2 = false;
-let gameStarted = false;
-let gameEnded = false;
-let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let xWins = 0;
-let nTies = 0;
-let oWins = 0;
-let turnIndicatorSrc = "assets/icon-x.svg";
+let p1IsX = localStorage.getItem("p1-is-x")
+  ? JSON.parse(localStorage.getItem("p1-is-x"))
+  : true;
+let isP1Turn = localStorage.getItem("is-p1-turn")
+  ? JSON.parse(localStorage.getItem("is-p1-turn"))
+  : true;
+let vsAi = localStorage.getItem("vs-ai")
+  ? JSON.parse(localStorage.getItem("vs-ai"))
+  : false;
+let vsP2 = localStorage.getItem("vs-p2")
+  ? JSON.parse(localStorage.getItem("vs-p2"))
+  : false;
+let gameStarted = localStorage.getItem("game-started")
+  ? JSON.parse(localStorage.getItem("game-started"))
+  : false;
+let gameEnded = localStorage.getItem("game-ended")
+  ? JSON.parse(localStorage.getItem("game-ended"))
+  : false;
+let board = localStorage.getItem("board")
+  ? JSON.parse(localStorage.getItem("board"))
+  : [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let xWins = localStorage.getItem("x-wins")
+  ? JSON.parse(localStorage.getItem("x-wins"))
+  : 0;
+let nTies = localStorage.getItem("n-ties")
+  ? JSON.parse(localStorage.getItem("n-ties"))
+  : 0;
+let oWins = localStorage.getItem("o-wins")
+  ? JSON.parse(localStorage.getItem("o-wins"))
+  : 0;
+let turnIndicatorSrc = localStorage.getItem("turn-indicator-src")
+  ? localStorage.getItem("turn-indicator-src")
+  : "assets/icon-x.svg";
 
-p1IsX = JSON.parse(localStorage.getItem("p1-is-x"));
-isP1Turn = JSON.parse(localStorage.getItem("is-p1-turn"));
-vsAi = JSON.parse(localStorage.getItem("vs-ai"));
-vsP2 = JSON.parse(localStorage.getItem("vs-p2"));
-gameStarted = JSON.parse(localStorage.getItem("game-started"));
-gameEnded = JSON.parse(localStorage.getItem("game-ended"));
-board = JSON.parse(localStorage.getItem("board"));
-xWins = JSON.parse(localStorage.getItem("x-wins"));
-nTies = JSON.parse(localStorage.getItem("n-ties"));
-oWins = JSON.parse(localStorage.getItem("o-wins"));
-turnIndicatorSrc = localStorage.getItem("turn-indicator-src");
 score1Text.textContent = localStorage.getItem("score-1-text");
 score2Text.textContent = localStorage.getItem("score-2-text");
 // ---- GENERIC FUNCTIONS ---- //
@@ -352,19 +363,21 @@ const handleVsP2Click = () => {
 };
 
 const handleSlotEnter = (event) => {
-  if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
-    const xOutline = document.createElement("img");
-    xOutline.src = "assets/icon-x-outline.svg";
-    xOutline.id = "outline";
-    xOutline.style.pointerEvents = "none";
-    event.target.appendChild(xOutline);
-  }
-  if ((isP1Turn && !p1IsX) || (!isP1Turn && p1IsX)) {
-    const oOutline = document.createElement("img");
-    oOutline.src = "assets/icon-o-outline.svg";
-    oOutline.id = "outline";
-    oOutline.style.pointerEvents = "none";
-    event.target.appendChild(oOutline);
+  if (window.innerWidth > 480) {
+    if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
+      const xOutline = document.createElement("img");
+      xOutline.src = "assets/icon-x-outline.svg";
+      xOutline.id = "outline";
+      xOutline.style.pointerEvents = "none";
+      event.target.appendChild(xOutline);
+    }
+    if ((isP1Turn && !p1IsX) || (!isP1Turn && p1IsX)) {
+      const oOutline = document.createElement("img");
+      oOutline.src = "assets/icon-o-outline.svg";
+      oOutline.id = "outline";
+      oOutline.style.pointerEvents = "none";
+      event.target.appendChild(oOutline);
+    }
   }
 };
 
