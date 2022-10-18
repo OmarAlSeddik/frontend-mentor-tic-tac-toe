@@ -33,4 +33,7 @@ body {
   padding: 1.5rem;
   background-color: var(--navy);
   color: var(--silver);
+  @media (max-width: 30rem) {
+    justify-content: start;
+  }
 }

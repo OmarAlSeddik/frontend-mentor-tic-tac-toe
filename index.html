@@ -59,11 +59,11 @@
     </div>
     <!-- Game Board Page -->
     <div class="grid hidden" id="game-board-page">
-      <div class="flex align-self--center gap--8">
+      <div class="flex align-self--center gap--8 mb--mobile--44">
         <img src="assets/icon-x.svg" alt="" class="icon--md" />
         <img src="assets/icon-o.svg" alt="" class="icon--md" />
       </div>
-      <div class="card--sm flex--center gap--12">
+      <div class="card--sm flex--center gap--12 mb--mobile--44">
         <img
           src="assets/icon-x.svg"
           alt=""
@@ -73,7 +73,7 @@
         <p class="heading--xs">TURN</p>
       </div>
       <button
-        class="justify-self--right button button--secondary button--secondary--silver"
+        class="justify-self--right button button--secondary button--secondary--silver mb--mobile--44"
         id="restart-button"
       >
         <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
@@ -104,8 +104,13 @@
     <dialog class="modal" id="modal">
       <div class="game-result flex--center column">
         <p class="heading--xs mb--16 color--silver" id="game-result-text-1"></p>
-        <div class="flex--center gap--24 mb--24">
-          <img src="" alt="" class="icon--lg" id="game-result-icon" />
+        <div class="flex--center gap--24 mb--24 gap--mobile--8">
+          <img
+            src=""
+            alt=""
+            class="icon--lg icon--mobile"
+            id="game-result-icon"
+          />
           <p class="heading--lg color--blue" id="game-result-text-2"></p>
         </div>
         <div class="button-container flex gap--16">

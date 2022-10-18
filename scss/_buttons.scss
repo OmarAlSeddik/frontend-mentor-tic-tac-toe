@@ -26,6 +26,9 @@
   }
   &--secondary {
     padding: 1rem;
+    @media (max-width: 30rem) {
+      padding: 0.75rem;
+    }
     &--yellow {
       background-color: var(--yellow);
       box-shadow: inset 0px -0.25rem 0px var(--yellow-dark);
