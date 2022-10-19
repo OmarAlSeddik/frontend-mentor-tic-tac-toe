@@ -363,7 +363,7 @@ const handleVsP2Click = () => {
 };
 
 const handleSlotEnter = (event) => {
-  if (window.innerWidth > 480) {
+  if (window.innerWidth > 1280) {
     if ((isP1Turn && p1IsX) || (!isP1Turn && !p1IsX)) {
       const xOutline = document.createElement("img");
       xOutline.src = "assets/icon-x-outline.svg";
