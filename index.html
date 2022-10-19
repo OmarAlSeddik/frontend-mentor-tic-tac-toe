@@ -23,8 +23,8 @@
       <!-- New Game Page -->
       <div class="flex column container" id="new-game-page">
         <div class="flex align-self--center gap--8 mb--40">
-          <img src="assets/icon-x.svg" alt="" class="icon--md" />
-          <img src="assets/icon-o.svg" alt="" class="icon--md" />
+          <img src="assets/icon-x.svg" alt="x mark" class="icon--md" />
+          <img src="assets/icon-o.svg" alt="o mark" class="icon--md" />
         </div>
         <div class="card--md flex--center column mb--40">
           <h1 class="heading--sm mb--24">PICK PLAYER 1'S MARK</h1>
@@ -36,7 +36,7 @@
             >
               <img
                 src="assets/icon-x.svg"
-                alt=""
+                alt="x mark"
                 class="icon--md icon--navy"
                 id="toggle-x-icon"
               />
@@ -44,7 +44,7 @@
             <button class="toggle__button" id="toggle-o" aria-label="Toggle-O">
               <img
                 src="assets/icon-o.svg"
-                alt=""
+                alt="o mark"
                 class="icon--md icon--silver"
                 id="toggle-o-icon"
               />
@@ -56,22 +56,22 @@
           class="button button--primary button--primary--yellow mb--20"
           id="vs-ai"
         >
-          <p class="heading--sm">NEW GAME (VS CPU)</p>
+          <span class="heading--sm">NEW GAME (VS CPU)</span>
         </button>
         <button class="button button--primary button--primary--blue" id="vs-p2">
-          <p class="heading--sm">NEW GAME (VS PLAYER)</p>
+          <span class="heading--sm">NEW GAME (VS PLAYER)</span>
         </button>
       </div>
       <!-- Game Board Page -->
       <div class="grid hidden" id="game-board-page">
         <div class="flex align-self--center gap--8 mb--mobile--44">
-          <img src="assets/icon-x.svg" alt="" class="icon--md" />
-          <img src="assets/icon-o.svg" alt="" class="icon--md" />
+          <img src="assets/icon-x.svg" alt="x mark" class="icon--md" />
+          <img src="assets/icon-o.svg" alt="o mark" class="icon--md" />
         </div>
         <div class="card--sm flex--center gap--12 mb--mobile--44">
           <img
             src="assets/icon-x.svg"
-            alt=""
+            alt="x mark"
             class="icon--sm icon--silver"
             id="turn-indicator"
           />
@@ -81,7 +81,7 @@
           class="justify-self--right button button--secondary button--secondary--silver mb--mobile--44"
           id="restart-button"
         >
-          <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
+          <img src="assets/icon-restart.svg" alt="restart" class="icon--sm" />
         </button>
         <div class="flex--center card--lg" id="0"></div>
         <div class="flex--center card--lg" id="1"></div>
@@ -114,8 +114,8 @@
           ></p>
           <div class="flex--center gap--24 mb--24 gap--mobile--8">
             <img
-              src=""
-              alt=""
+              src="placeholder"
+              alt="Winning Mark"
               class="icon--lg icon--mobile"
               id="game-result-icon"
             />
@@ -126,13 +126,15 @@
               class="button button--secondary button--secondary--silver"
               id="modal-button-1"
             >
-              <p class="heading--xs" id="modal-button-1-text">QUIT</p>
+              <span class="heading--xs" id="modal-button-1-text">QUIT</span>
             </button>
             <button
               class="button button--secondary button--secondary--yellow"
               id="modal-button-2"
             >
-              <p class="heading--xs" id="modal-button-2-text">NEXT ROUND</p>
+              <span class="heading--xs" id="modal-button-2-text"
+                >NEXT ROUND</span
+              >
             </button>
           </div>
         </div>
