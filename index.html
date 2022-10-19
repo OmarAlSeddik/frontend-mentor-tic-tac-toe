@@ -19,116 +19,125 @@
     <title>Frontend Mentor | Tic Tac Toe</title>
   </head>
   <body>
-    <!-- New Game Page -->
-    <div class="flex column container" id="new-game-page">
-      <div class="flex align-self--center gap--8 mb--40">
-        <img src="assets/icon-x.svg" alt="" class="icon--md" />
-        <img src="assets/icon-o.svg" alt="" class="icon--md" />
-      </div>
-      <div class="card--md flex--center column mb--40">
-        <h1 class="heading--sm mb--24">PICK PLAYER 1'S MARK</h1>
-        <div class="toggle mb--16">
-          <button class="toggle__button active" id="toggle-x">
-            <img
-              src="assets/icon-x.svg"
-              alt=""
-              class="icon--md icon--navy"
-              id="toggle-x-icon"
-            />
-          </button>
-          <button class="toggle__button" id="toggle-o">
-            <img
-              src="assets/icon-o.svg"
-              alt=""
-              class="icon--md icon--silver"
-              id="toggle-o-icon"
-            />
-          </button>
+    <main>
+      <!-- New Game Page -->
+      <div class="flex column container" id="new-game-page">
+        <div class="flex align-self--center gap--8 mb--40">
+          <img src="assets/icon-x.svg" alt="" class="icon--md" />
+          <img src="assets/icon-o.svg" alt="" class="icon--md" />
         </div>
-        <p class="text transparent">REMEMBER: X GOES FIRST</p>
+        <div class="card--md flex--center column mb--40">
+          <h1 class="heading--sm mb--24">PICK PLAYER 1'S MARK</h1>
+          <div class="toggle mb--16">
+            <button
+              class="toggle__button active"
+              id="toggle-x"
+              aria-label="Toggle-X"
+            >
+              <img
+                src="assets/icon-x.svg"
+                alt=""
+                class="icon--md icon--navy"
+                id="toggle-x-icon"
+              />
+            </button>
+            <button class="toggle__button" id="toggle-o" aria-label="Toggle-O">
+              <img
+                src="assets/icon-o.svg"
+                alt=""
+                class="icon--md icon--silver"
+                id="toggle-o-icon"
+              />
+            </button>
+          </div>
+          <p class="text transparent">REMEMBER: X GOES FIRST</p>
+        </div>
+        <button
+          class="button button--primary button--primary--yellow mb--20"
+          id="vs-ai"
+        >
+          <p class="heading--sm">NEW GAME (VS CPU)</p>
+        </button>
+        <button class="button button--primary button--primary--blue" id="vs-p2">
+          <p class="heading--sm">NEW GAME (VS PLAYER)</p>
+        </button>
       </div>
-      <button
-        class="button button--primary button--primary--yellow mb--20"
-        id="vs-ai"
-      >
-        <p class="heading--sm">NEW GAME (VS CPU)</p>
-      </button>
-      <button class="button button--primary button--primary--blue" id="vs-p2">
-        <p class="heading--sm">NEW GAME (VS PLAYER)</p>
-      </button>
-    </div>
-    <!-- Game Board Page -->
-    <div class="grid hidden" id="game-board-page">
-      <div class="flex align-self--center gap--8 mb--mobile--44">
-        <img src="assets/icon-x.svg" alt="" class="icon--md" />
-        <img src="assets/icon-o.svg" alt="" class="icon--md" />
-      </div>
-      <div class="card--sm flex--center gap--12 mb--mobile--44">
-        <img
-          src="assets/icon-x.svg"
-          alt=""
-          class="icon--sm icon--silver"
-          id="turn-indicator"
-        />
-        <p class="heading--xs">TURN</p>
-      </div>
-      <button
-        class="justify-self--right button button--secondary button--secondary--silver mb--mobile--44"
-        id="restart-button"
-      >
-        <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
-      </button>
-      <div class="flex--center card--lg" id="0"></div>
-      <div class="flex--center card--lg" id="1"></div>
-      <div class="flex--center card--lg" id="2"></div>
-      <div class="flex--center card--lg" id="3"></div>
-      <div class="flex--center card--lg" id="4"></div>
-      <div class="flex--center card--lg" id="5"></div>
-      <div class="flex--center card--lg" id="6"></div>
-      <div class="flex--center card--lg" id="7"></div>
-      <div class="flex--center card--lg" id="8"></div>
-      <div class="score bg--blue flex--center column">
-        <div class="text" id="score-1-text"></div>
-        <div class="heading heading--md" id="score-1">0</div>
-      </div>
-      <div class="score bg--silver flex--center column">
-        <div class="text">TIES</div>
-        <div class="heading heading--md" id="ties">0</div>
-      </div>
-      <div class="score bg--yellow flex--center column">
-        <div class="text" id="score-2-text"></div>
-        <div class="heading heading--md" id="score-2">0</div>
-      </div>
-    </div>
-    <!-- Game Result -->
-    <dialog class="modal" id="modal">
-      <div class="game-result flex--center column">
-        <p class="heading--xs mb--16 color--silver" id="game-result-text-1"></p>
-        <div class="flex--center gap--24 mb--24 gap--mobile--8">
+      <!-- Game Board Page -->
+      <div class="grid hidden" id="game-board-page">
+        <div class="flex align-self--center gap--8 mb--mobile--44">
+          <img src="assets/icon-x.svg" alt="" class="icon--md" />
+          <img src="assets/icon-o.svg" alt="" class="icon--md" />
+        </div>
+        <div class="card--sm flex--center gap--12 mb--mobile--44">
           <img
-            src=""
+            src="assets/icon-x.svg"
             alt=""
-            class="icon--lg icon--mobile"
-            id="game-result-icon"
+            class="icon--sm icon--silver"
+            id="turn-indicator"
           />
-          <p class="heading--lg color--blue" id="game-result-text-2"></p>
+          <p class="heading--xs">TURN</p>
         </div>
-        <div class="button-container flex gap--16">
-          <button
-            class="button button--secondary button--secondary--silver"
-            id="modal-button-1"
-          >
-            <p class="heading--xs" id="modal-button-1-text">QUIT</p>
-          </button>
-          <button
-            class="button button--secondary button--secondary--yellow"
-            id="modal-button-2"
-          >
-            <p class="heading--xs" id="modal-button-2-text">NEXT ROUND</p>
-          </button>
+        <button
+          class="justify-self--right button button--secondary button--secondary--silver mb--mobile--44"
+          id="restart-button"
+        >
+          <img src="assets/icon-restart.svg" alt="" class="icon--sm" />
+        </button>
+        <div class="flex--center card--lg" id="0"></div>
+        <div class="flex--center card--lg" id="1"></div>
+        <div class="flex--center card--lg" id="2"></div>
+        <div class="flex--center card--lg" id="3"></div>
+        <div class="flex--center card--lg" id="4"></div>
+        <div class="flex--center card--lg" id="5"></div>
+        <div class="flex--center card--lg" id="6"></div>
+        <div class="flex--center card--lg" id="7"></div>
+        <div class="flex--center card--lg" id="8"></div>
+        <div class="score bg--blue flex--center column">
+          <div class="text" id="score-1-text"></div>
+          <div class="heading heading--md" id="score-1">0</div>
+        </div>
+        <div class="score bg--silver flex--center column">
+          <div class="text">TIES</div>
+          <div class="heading heading--md" id="ties">0</div>
+        </div>
+        <div class="score bg--yellow flex--center column">
+          <div class="text" id="score-2-text"></div>
+          <div class="heading heading--md" id="score-2">0</div>
         </div>
       </div>
-    </dialog>
+      <!-- Game Result -->
+      <dialog class="modal" id="modal">
+        <div class="game-result flex--center column">
+          <p
+            class="heading--xs mb--16 color--silver"
+            id="game-result-text-1"
+          ></p>
+          <div class="flex--center gap--24 mb--24 gap--mobile--8">
+            <img
+              src=""
+              alt=""
+              class="icon--lg icon--mobile"
+              id="game-result-icon"
+            />
+            <p class="heading--lg color--blue" id="game-result-text-2"></p>
+          </div>
+          <div class="button-container flex gap--16">
+            <button
+              class="button button--secondary button--secondary--silver"
+              id="modal-button-1"
+            >
+              <p class="heading--xs" id="modal-button-1-text">QUIT</p>
+            </button>
+            <button
+              class="button button--secondary button--secondary--yellow"
+              id="modal-button-2"
+            >
+              <p class="heading--xs" id="modal-button-2-text">NEXT ROUND</p>
+            </button>
+          </div>
+        </div>
+      </dialog>
+    </main>
     <script src="js/script.js"></script>
   </body>
 </html>
