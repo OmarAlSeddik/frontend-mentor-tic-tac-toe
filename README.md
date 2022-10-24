@@ -18,3 +18,9 @@ This is a solution to Frontend Mentor's [Calculator app challenge](https://www.f
 ## Notes
 
 No libraries or frameworks have been used in the making of this project. This project was made for the purpose of practicing my vanilla JS and CSS skills. Feel free to visit the solution page of the project to provide criticism and advice, that would be much appreciated!
+
+## Screenshots
+
+![](/assets/Screenshot_1.png)
+![](/assets/Screenshot_2.png)
+![](/assets/Screenshot_3.png)
