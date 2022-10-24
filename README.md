@@ -1,48 +1,20 @@
-# Frontend Mentor - Tic Tac Toe solution
+# Impossible AI Tic-Tac-Toe
 
-This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v).
+This is a solution to Frontend Mentor's [Calculator app challenge](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) with bonus added functionality.
 
-## Table of contents
+## Links
 
-- [Overview](#overview)
-  - [The Challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My Process](#my-process)
-  - [Built With](#built-with)
-  - [What I Learned](#what-i-learned)
+- [Live Link](https://frontend-mentor-tic-tac-toe-26071997.netlify.app/)
+- [Solution Link](https://www.frontendmentor.io/solutions/impossible-ai-local-storage-no-frameworks-VDkgPghH5d)
 
-## Overview
+## Features
 
-### The Challenge
+- Fully functional tic-tac-toe game.
+- Option to play against another player (on the same device) or against the AI.
+- The AI utilizes the minimax algorithm to play the most optimal moves. It does not lose!
+- Utilizes the local storage to preserve the game mode, player marks, player scores, the board state, and more on leter page visits.
+- Fully responsive design.
 
-Users should be able to:
+## Notes
 
-- View the optimal layout for the game depending on their device's screen size.
-- See hover states for all interactive elements on the page.
-- Play the game either solo vs the computer or multiplayer against another person.
-- **Bonus 1 (Done!)**: Save the game state in the browser so that it’s preserved if the player refreshes their browser.
-- **Bonus 2 (Done!)**: Instead of having the computer randomly make their moves, try making it clever so it’s proactive in blocking your moves and trying to win.
-
-### Screenshot
-
-![](./assets/screenshot.png)
-
-### Links
-
-- [Solution](https://www.frontendmentor.io/solutions/impossible-ai-local-storage-no-frameworks-VDkgPghH5d)
-- [Live Site](https://frontend-mentor-tic-tac-toe-26071997.netlify.app/)
-
-## My Process
-
-### Built With
-
-- HTML
-- SCSS
-- JS
-
-### What I Learned
-
-- The minimax algorithm functionality.
-- Utilizing the local storage and handling more complex functions with vanilla JS.
-- Designing with utility-based classes.
+No libraries or frameworks have been used in the making of this project. This project was made for the purpose of practicing my vanilla JS and CSS skills. Feel free to visit the solution page of the project to provide criticism and advice, that would be much appreciated!
