@@ -22,7 +22,7 @@ No libraries or frameworks have been used in the making of this project. This pr
 ## Screenshots
 
 <p float="left">
-  <img src="/assets/Screenshot_1.png" width="33%" />
-  <img src="/assets/Screenshot_2.png" width="33%" /> 
-  <img src="/assets/Screenshot_3.png" width="33%" />
+  <img src="/assets/Screenshot_1.png" width="32%" />
+  <img src="/assets/Screenshot_2.png" width="32%" /> 
+  <img src="/assets/Screenshot_3.png" width="32%" />
 </p>
