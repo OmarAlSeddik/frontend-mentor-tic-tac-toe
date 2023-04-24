@@ -1,6 +1,6 @@
 # Impossible AI Tic-Tac-Toe
 
-This is a solution to Frontend Mentor's [Calculator app challenge](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) with bonus added functionality.
+This is a solution to Frontend Mentor's [Tic Tac Toe game challenge](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) with bonus added functionality.
 
 ## Links
 
